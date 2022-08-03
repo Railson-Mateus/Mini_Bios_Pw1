@@ -1,0 +1,62 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+    />
+    <title>Mini Bios</title>
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Mini Bios</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          {{#if currentUser}}
+            <li>
+              <a href="/edit">
+                Olá,
+                {{getName currentUser}}
+              </a>
+            </li>
+            <li><a href="/logout">Sair</a></li>
+          {{else}}
+            <li><a href="/login">Entrar</a></li>
+            <li><a href="/signup">Cadastre-se</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      {{#each errors}}
+        <div class="alert alert-danger" role="alert">
+          {{{this}}}
+        </div>
+      {{/each}}
+      {{#each infos}}
+        <div class="alert alert-info" role="alert">
+          {{{this}}}
+        </div>
+      {{/each}}
+      <h1>Boas-vindas ao Mini Bios!</h1>
+      {{#each users}}
+        {{#_doc}}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a href="/users/{{username}}"> {{username}}</a>
+            </div>
+            {{#if bio}}
+              <div class="panel-body">
+                {{{bio}}}
+              </div>
+            {{/if}}
+          </div>
+        {{/_doc}}
+      {{/each}}
+    </div>
+  </body>
+</html>

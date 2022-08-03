@@ -1,0 +1,56 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+    />
+    <style>
+      .containe { margin-top: 20px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; height: 80vh;}
+    </style>
+    <title>Mini Bios - Perfil</title>
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Mini Bios</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          {{#if currentUser}}
+            <li>
+              <a href="/edit">
+                Olá,
+                {{getName currentUser}}
+              </a>
+            </li>
+            <li><a href="/logout">Sair</a></li>
+          {{else}}
+            <li><a href="/login">Entrar</a></li>
+            <li><a href="/signup">Cadastre-se</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+    <div class="containe">
+
+      <h1>{{getName user}}</h1>
+
+      {{#if (getBio user)}}
+        <h2>{{bio}}</h2>
+      {{/if}}
+      <p>Cadastrou-se em {{getDate user}}</p>
+      {{#if (isOwnProfile currentUser user)}}
+        <div class="pull-right">
+          <a href="/edit/{{getName user}}" class="btn btn-info">Atualize seu
+            perfil</a>
+          <a href="/delete" class="btn btn-danger">Excluir Perfil</a>
+        </div>
+      {{/if}}
+    </div>
+  </body>
+</html>
